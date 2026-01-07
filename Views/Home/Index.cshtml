@@ -1,0 +1,56 @@
+@model backend.Models.ProductListResponse
+@{
+    ViewData["Title"] = "Products";
+    var currentPage = (Model.Skip / Model.Limit) + 1;
+    var totalPages = (int)Math.Ceiling((double)Model.Total / Model.Limit);
+}
+
+<h1>Products</h1>
+
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="@product.Thumbnail" class="card-img-top" alt="@product.Title" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Title</h5>
+                    <p class="card-text price" data-price="@product.Price">$@product.Price</p>
+                    <p class="card-text">
+                        @foreach (var tag in product.Tags)
+                        {
+                            <span class="badge badge-secondary">@tag</span>
+                        }
+                    </p>
+                    <a href="@Url.Action("Details", "Home", new { id = product.Id })" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (totalPages > 1)
+{
+    <nav aria-label="Product pagination">
+        <ul class="pagination justify-content-center">
+            @if (currentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", "Home", new { page = currentPage - 1, pageSize = Model.Limit })">Previous</a>
+                </li>
+            }
+            @for (int i = Math.Max(1, currentPage - 2); i <= Math.Min(totalPages, currentPage + 2); i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", "Home", new { page = i, pageSize = Model.Limit })">@i</a>
+                </li>
+            }
+            @if (currentPage < totalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", "Home", new { page = currentPage + 1, pageSize = Model.Limit })">Next</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
