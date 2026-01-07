@@ -1,6 +1,6 @@
 # Product Browser - ASP.NET Core MVC
 
-Hey there! 👋 This is my take on the Jigsaw Finance technical task - building a simple product browser using ASP.NET Core MVC. I wanted to create something clean, functional, and that shows good separation of concerns.
+This is my take on the Jigsaw Finance technical task - building a simple product browser using ASP.NET Core MVC. I wanted to create something clean, functional, and that shows good separation of concerns.
 
 ## What I Built
 
@@ -47,14 +47,6 @@ I started by reading the requirements carefully - needed an MVC app with two pag
 - Bootstrap for styling
 - DummyJSON API for product data
 
-## Running It
-
-1. Make sure you have .NET 8 installed
-2. Clone this repo
-3. Navigate to the `ProductBrowser` folder
-4. Run `dotnet restore` to get dependencies
-5. Run `dotnet run` to start the app
-
 ## Project Structure
 
 ```
@@ -69,5 +61,3 @@ ProductBrowser/
 ```
 
 I focused on readability and maintainability - the code should be easy to understand and extend. The separation of concerns makes it simple to add new features or modify existing ones.
-
-This was a great exercise in building a complete web application from scratch. I enjoyed working with ASP.NET Core MVC and implementing the requirements in a clean way!
